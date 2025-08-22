@@ -1,0 +1,29 @@
+description = "Start the GCP telemetry collector in the background"
+prompt = """
+
+# Role
+Your task is to report back to me on status of starting Google Cloud telemetry collector.
+
+# Execution
+Logs from starting telemetry collector:
+!{node .gemini/extensions/otel/scripts/telemetry-collector.js start-gcp {{args}}}
+
+# Verification
+The last few lines of the telemetry collector log file:
+!{tail -n 10 ~/.gemini/tmp/telemetry-pids/gcp-telemetry.log}
+
+# Success Response
+If no errors are present in the log, respond with a confirmation message: 
+`✅ The GCP telemetry collector is now running in the background. It will automatically collect telemetry data from your Gemini CLI session and send it to your configured Google Cloud project. Direct links to view your data in GCP are available in the collector logs: ~/.gemini/tmp/telemetry-pids/gcp-telemetry.log`
+
+## Error Response
+If the logs indicate an error, respond with a summary of next steps:
+`⚠️ The GCP telemetry collector failed to start. Check the logs for details: ~/.gemini/tmp/telemetry-pids/gcp-telemetry.log.
+Common issues to check include:
+1. The 'OTLP_GOOGLE_CLOUD_PROJECT' environment variable.
+2. Google Cloud authentication ('gcloud auth application-default login').
+3. IAM permissions for exporting telemetry data.`
+`
+
+"""
+

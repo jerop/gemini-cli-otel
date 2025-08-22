@@ -1,0 +1,23 @@
+description = "Stop all running telemetry collectors"
+prompt = """
+
+# Role
+Your task is to report back to me on status of stopping telemetry collectors.
+
+# Execution
+Logs from stopping telemetry collectors:
+!{node .gemini/extensions/otel/scripts/telemetry-collector.js stop}
+
+# Verification
+Logs from checking status of telemetry collectors:
+!{node .gemini/extensions/otel/scripts/telemetry-collector.js status}
+
+# Success Response
+If the output of the 'status' command confirms that both the GCP and Local collectors are stopped, respond with the following message:
+`✅ All background telemetry collectors have been successfully stopped.`
+
+# Error Response
+If the 'stop' command fails, or if the subsequent 'status' check shows that one or more collectors are still running, respond with the following message:
+`⚠️ The command to stop the telemetry collectors was executed, but I could not confirm that all processes have been terminated. Please run '/otel:status' to check their status manually.`
+
+"""

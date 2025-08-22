@@ -1,0 +1,22 @@
+description = "Check status of telemetry collectors"
+prompt = """
+
+# Role
+Your task is to report back to me on status of the telemetry collectors.
+
+# Execution
+Logs from checking status of telemetry collectors:
+!{node .gemini/extensions/otel/scripts/telemetry-collector.js status}
+
+# Success Response
+Parse the output from to determine if the 'GCP Collector' and 'Local Collector' are running or stopped. Then, display the status using the following format. Use the 🟢 emoji for a running process and the 🔴 emoji for a stopped one.
+
+`📊 Telemetry Collector Status:
+    GCP Collector: [Insert 🟢 or 🔴] [Insert Status, e.g., Running or Stopped]
+    Local Collector: [Insert 🟢 or 🔴] [Insert Status, e.g., Running or Stopped]`
+
+# Error Response
+If the command fails to execute, respond with the following message:
+`⚠️ The status command failed to run, so I cannot check the collectors. Please ensure the telemetry extension is installed correctly.`
+
+"""

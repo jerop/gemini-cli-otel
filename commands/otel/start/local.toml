@@ -1,0 +1,23 @@
+description = "Start local telemetry collector with file output"
+prompt = """
+
+# Role
+Your task is to report back to me on status of starting local telemetry collector.
+
+# Execution
+Logs from starting telemetry collector:
+!{node .gemini/extensions/otel/scripts/telemetry-collector.js start-local {{args}}}
+
+# Verification
+The last few lines of the telemetry collector log file:
+!{tail -n 10 ~/.gemini/tmp/telemetry-pids/local-telemetry.log}
+
+# Success Response
+If no errors are present in the log, respond with a confirmation message:
+`✅ The local telemetry collector is now running in the background. It will collect telemetry data from your Gemini CLI sessions, which is perfect for debugging and local development. The collector's log file is located at: ~/.gemini/tmp/telemetry-pids/local-telemetry.log`
+
+# Error Response
+If the logs indicate an error, respond with a summary of next steps:
+`⚠️ The local telemetry collector failed to start. Please check the logs for details: ~/.gemini/tmp/telemetry-pids/local-telemetry.log`
+
+"""

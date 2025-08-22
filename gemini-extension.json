@@ -1,0 +1,6 @@
+{
+  "name": "otel",
+  "version": "0.1.0",
+  "description": "OpenTelemetry Collector for Gemini CLI",
+  "contextFileName": "OTEL.md"
+}
